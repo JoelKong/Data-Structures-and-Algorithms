@@ -11,3 +11,28 @@ function same(arr1, arr2) {
   }
   return true;
 }
+
+function validAnagram(str1, str2) {
+  if (str1.length !== str2.length) {
+    return false;
+  }
+
+  const lookup = {};
+
+  for (let i = 0; i < str1.length; i++) {
+    let letter = str1[i];
+    if (lookup[letter]) {
+      lookup[letter] += 1;
+    }
+    lookup[letter] = 1;
+  }
+
+  for (let i = 0; i < str1.length; i++) {
+    let letter = str2[i];
+    if (!lookup[letter]) {
+      return false;
+    }
+    lookup[letter] -= 1;
+  }
+  return true;
+}
