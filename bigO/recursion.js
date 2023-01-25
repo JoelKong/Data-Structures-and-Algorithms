@@ -53,3 +53,17 @@ function fib(n) {
   if (n <= 2) return 1;
   return fib(n - 1) + fib(n - 2);
 }
+
+function reverse(str) {
+  if (str.length <= 1) return str;
+  return reverse(str.slice(1)) + str[0];
+}
+
+function isPalindrome(str) {
+  if (str.length <= 1) return str;
+  if (isPalindrome(str.slice(1)) + str[0] === str) {
+    return true;
+  } else {
+    return false;
+  }
+}
