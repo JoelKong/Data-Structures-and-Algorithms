@@ -67,3 +67,29 @@ function countUniqueValues(arr) {
 }
 
 [1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
+
+function sameFrequency(x, y) {
+  x = x.toString();
+  y = y.toString();
+  if (x.length !== y.length) {
+    return false;
+  }
+
+  let frequency = {};
+  for (let i = 0; i < x.length; i++) {
+    if (frequency[x[i]]) {
+      frequency[x[i]]++;
+    } else {
+      frequency[x[i]] = 1;
+    }
+  }
+
+  for (let i = 0; i < y.length; i++) {
+    if (frequency[y[i]]) {
+      frequency[y[i]]--;
+    } else {
+      return false;
+    }
+  }
+  return true;
+}
