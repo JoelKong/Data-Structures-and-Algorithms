@@ -93,3 +93,5 @@ function sameFrequency(x, y) {
   }
   return true;
 }
+
+function areThereDuplicates()
