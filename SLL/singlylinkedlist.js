@@ -121,7 +121,7 @@ class SinglyLinkedList {
     this.head = this.tail;
     this.tail = node;
 
-    let nextNode;
+    let nextNode = null;
     let prevNode = null;
 
     for (let i = 0; i < this.length; i++) {
@@ -133,4 +133,5 @@ class SinglyLinkedList {
     return this;
   }
 }
+
 let list = new SinglyLinkedList();
