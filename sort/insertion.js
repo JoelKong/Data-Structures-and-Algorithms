@@ -10,4 +10,4 @@ function insertionSort(arr) {
   return arr;
 }
 
-[1, 2, 9, 76, 4][(1, 2, 4, 9, 76)];
+[5, 4, 9, 76, 4][(1, 2, 4, 9, 76)];
