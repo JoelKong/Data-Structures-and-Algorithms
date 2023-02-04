@@ -90,4 +90,13 @@ class DoublyLinkedList {
     }
     return current;
   }
+
+  set(idx, val) {
+    let setNode = this.get(idx);
+    if (setNode) {
+      this.val = val;
+      return true;
+    }
+    return false;
+  }
 }
