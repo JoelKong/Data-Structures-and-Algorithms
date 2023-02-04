@@ -128,6 +128,7 @@ class DoublyLinkedList {
     return removedNode;
   }
   reverse() {
+    if (!this.head) return undefined;
     let currentNode = this.head;
     this.head = this.tail;
     this.tail = currentNode;
