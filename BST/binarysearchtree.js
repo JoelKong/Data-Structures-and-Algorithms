@@ -41,6 +41,33 @@ class BinarySearchTree {
     }
   }
 
+  //recursive
+  insert(val) {
+    const node = new Node(val);
+    if (!this.root) {
+      this.root = node;
+      return this;
+    }
+
+    const inserted = (val, current = this.root) => {
+      if (val < current.val) {
+        if (!current.left) {
+          current.left = node;
+          return this;
+        }
+        return inserted(val, current.left);
+      } else {
+        if (!current.right) {
+          current.right = node;
+          return this;
+        }
+        return inserted(val, current.right);
+      }
+    };
+
+    return inserted(val);
+  }
+
   find(val) {
     if (!this.root) return false;
     let current = this.root;
@@ -56,6 +83,16 @@ class BinarySearchTree {
     }
     if (!found) return undefined;
     return current;
+  }
+
+  //recursive
+  find(value, node = this.root) {
+    if (!node) return false;
+
+    if (node.value === value) return true;
+
+    if (value < node.value) return this.find(value, node.left);
+    else return this.find(value, node.right);
   }
 
   findRightMinimumValue(node) {
