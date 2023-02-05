@@ -120,6 +120,40 @@ class BinarySearchTree {
     };
     this.root = _remove(val);
   }
+
+  //iterative
+  remove(val) {
+    let node = this.root,
+      parent = null;
+    while (node) {
+      if (val < node.val) {
+        parent = node;
+        node = node.left;
+      } else if (val > node.val) {
+        parent = node;
+        node = node.right;
+      } else if (node.left && node.right) {
+        let minimumNode = node.right;
+        while (minimumNode.left) {
+          parent = minimumNode;
+          minimumNode = minimumNode.left;
+        }
+        node.val = minimumNode.val;
+        val = node.val;
+        node = node.right;
+        parent = null;
+      } else {
+        if (!parent) {
+          this.root = node.left || node.right;
+        } else if (parent.left === node) {
+          parent.left = node.left || node.right;
+        } else {
+          parent.right = node.left || node.right;
+        }
+        break;
+      }
+    }
+  }
 }
 
 //       10
