@@ -57,6 +57,32 @@ class BinarySearchTree {
     if (!found) return undefined;
     return current;
   }
+
+  findRightMinimumValue(node) {
+    if (!node || !node.right) return null;
+    else return node.right.val;
+  }
+
+  remove(val) {
+    let _remove = (val, node = this.root) => {
+      if (node) {
+        if (val < node.val) {
+          node.left = _remove(val, node.left);
+        } else if (val > node.val) {
+          node.right = _remove(val, node.right);
+        } else if (node.left && node.right) {
+          // 2 children
+          node.val = this.findRightMinimumValue(node);
+          node.right = _remove(node.val, node.right);
+        } else {
+          //leaf node
+          node = node.left || node.right;
+        }
+      }
+      return node;
+    };
+    this.root = _remove(val);
+  }
 }
 
 //       10
