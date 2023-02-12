@@ -26,4 +26,14 @@ class Graph {
       (v) => v !== vertex1
     );
   }
+
+  removeVertex(vertex) {
+    //delete edges in the vertex and all connected edges to it
+    while (this.adjacencyList[vertex].length) {
+      const adjacentVertex = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, adjacentVertex);
+    }
+    //delete the actual key with the empty array
+    delete this.adjacencyList[vertex];
+  }
 }
