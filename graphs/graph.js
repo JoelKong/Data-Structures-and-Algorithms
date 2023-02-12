@@ -37,6 +37,7 @@ class Graph {
     delete this.adjacencyList[vertex];
   }
 
+  //directed graph
   DFSRecursive(startVertex) {
     const result = [];
     const visited = {};
@@ -53,6 +54,48 @@ class Graph {
       });
     }
     dfs(startVertex);
+    return result;
+  }
+
+  //neighbours start from end of the arr instead of start cause popping unlike recursion so answer is diff but still dfs
+  //use stack
+  DFSIterative(startVertex) {
+    const stack = [startVertex];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    visited[startVertex] = true;
+    while (stack.length) {
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+      this.adjacencyList[currentVertex].map((neighbour) => {
+        if (!visited(neighbour)) {
+          visited[neighbour] = true;
+          stack.push(neighbour);
+        }
+      });
+    }
+    return result;
+  }
+
+  //use queue
+  BFS(startVertex) {
+    const queue = [startVertex];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    visited[startVertex] = true;
+
+    while (queue.length) {
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+      this.adjacencyList[currentVertex].map((neighbour) => {
+        if (!visited[neighbour]) {
+          visited[neighbour] = true;
+          queue.push(neighbour);
+        }
+      });
+    }
     return result;
   }
 }
