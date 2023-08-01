@@ -75,5 +75,15 @@ class LinkedList:
             self.tail = None
         return temp
 
+    # Get (O(n))
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+
+        temp = self.head
+        for _ in range(index):  # if not going to use the variable in for loop use _
+            temp = temp.next
+        return temp
+
 
 my_linked_list = LinkedList(4)
