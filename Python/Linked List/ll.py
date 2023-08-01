@@ -47,7 +47,7 @@ class LinkedList:
         if self.length == 0:
             self.head = None
             self.tail = None
-        return popped_node.value
+        return popped_node
 
     # Prepend (O(1))
     def prepend(self, value):
@@ -60,6 +60,20 @@ class LinkedList:
             self.head = new_node
         self.length += 1
         return True
+
+    # Pop first (O(1))
+    def pop_first(self):
+        if self.length == 0:
+            return None
+
+        temp = self.head
+        self.head = self.head.next
+        temp.next = None
+        self.length -= 1
+
+        if self.length == 0:
+            self.tail = None
+        return temp
 
 
 my_linked_list = LinkedList(4)
