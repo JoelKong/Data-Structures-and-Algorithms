@@ -125,5 +125,20 @@ class LinkedList:
         self.length -= 1
         return popped
 
+    # Reverse a linked list (O(n))
+    def reverse(self):
+        current_node = self.head
+        self.head = self.tail
+        self.tail = current_node
+
+        next_node = current_node.next
+        prev_node = None
+
+        for _ in range(self.length):
+            next_node = current_node.next
+            current_node.next = prev_node
+            prev_node = current_node
+            current_node = next_node
+
 
 my_linked_list = LinkedList(4)
