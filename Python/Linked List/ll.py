@@ -85,5 +85,45 @@ class LinkedList:
             temp = temp.next
         return temp
 
+    # Set Value (O(n))
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+
+    # Insert Node in index (O(n))
+    def insert(self, index, value):
+        if index < 0 or index >= self.length:
+            return False
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+
+        new_node = Node(value)
+        temp = self.get(index - 1)
+        new_node.next = temp.next
+        temp.next = new_node
+        self.length += 1
+        return True
+
+    # Remove Node in index (O(n))
+    def remove(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        if index == 0:
+            return self.pop_first()
+        if index == self.length:
+            return self.pop()
+
+        prev = self.get(index - 1)
+        popped = prev.next
+        prev.next = popped.next
+        popped.next = None
+        self.length -= 1
+        return popped
+
 
 my_linked_list = LinkedList(4)
