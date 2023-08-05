@@ -31,5 +31,20 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
+    # Pop
+    def pop(self):
+        if self.length == 0:
+            return None
+        else:
+            popped_node = self.tail
+            self.tail = self.tail.prev
+            self.tail.next = None
+            popped_node.prev = None
+        self.length -= 1
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+        return popped_node
+
 
 dll = DoublyLinkedList(7)
