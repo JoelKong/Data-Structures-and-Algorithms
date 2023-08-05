@@ -71,6 +71,7 @@ class DoublyLinkedList:
         self.length -= 1
         return popped_node
 
+    # Get (Optimised)
     def get(self, index):
         if index < 0 or index >= self.length:
             return None
@@ -83,6 +84,33 @@ class DoublyLinkedList:
             for _ in range(self.length - 1, index, -1):
                 temp = temp.prev
         return temp
+
+    # Set
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+
+    # Insert
+    def insert(self, index, value):
+        if index < 0 or index >= self.length:
+            return None
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+
+        new_node = Node(value)
+        before = self.get(index - 1)
+        after = before.next
+        new_node.prev = before
+        new_node.next = after
+        before.next = new_node
+        after.prev = new_node
+        self.length += 1
+        return True
 
 
 dll = DoublyLinkedList(7)
